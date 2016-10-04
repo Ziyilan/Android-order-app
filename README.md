@@ -3,11 +3,17 @@
 ## Repo: 
 https://github.com/Ziyilan/Android-order-app
 ## Additional features: 
-Include pictures of menu items
+Include pictures of menu items using internal storage
 ## Work Plan:
 Oct 3rd Finish work plan and basic setup
 
 Oct 4th - 5th Create fragments for all pages and connect fragments in the right order. 
+
+* Erica: home page, customer menu page and checkout page.
+
+* Jason: Ingredient page and order page
+
+* Bill: Cook menu page and edit menu page
 
 Oct 6th Integration part1
 
