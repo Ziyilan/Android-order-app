@@ -21,4 +21,4 @@ Oct 7th - Oct 10th Work on “backend” functionality
 
 Oct 10th Integration part 2 
 
-Oct 11 - 12th Connect the app to SQL, builder camera feature, Debug and wrap up
+Oct 11 - 12th Connect the app to SQL, add image feature, Debug and wrap up
