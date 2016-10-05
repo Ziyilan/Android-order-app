@@ -1,0 +1,29 @@
+<LinearLayout
+    android:id="@+id/widget43"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:weightSum="2"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_menu_button"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:id="@+id/edit_menu"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_order_button"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:id="@+id/view_orders"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp" />
+</LinearLayout>

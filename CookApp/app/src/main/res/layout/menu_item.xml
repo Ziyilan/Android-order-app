@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/menu_item_name"
+        android:id="@+id/menuItemName"
+        android:layout_weight="6"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/menuItemDeleteButton"
+        android:src="@drawable/ic_delete"
+        android:layout_weight="1"
+        android:layout_gravity="right" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/menuItemEditButton"
+
+        android:src="@drawable/ic_edit"
+        android:layout_weight="1"
+        android:layout_gravity="right" />
+
+
+
+</LinearLayout>
