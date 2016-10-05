@@ -6,6 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/menu_item_name"
+        android:layout_marginTop="15dp"
         android:id="@+id/menuItemName"
         android:layout_weight="6"
         />
@@ -30,3 +31,41 @@
 
 
 </LinearLayout>
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:text="Menu item" />
+
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="Delete"/>
+
+    <EditText android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/delete"
+        android:layout_toLeftOf="@+id/delete"
+        android:layout_toStartOf="@+id/delete"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp"
+        android:inputType="number"/>
+
+
+</RelativeLayout>
+
+
