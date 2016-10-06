@@ -2,6 +2,7 @@ package bill.cookapp;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,11 @@ public class FragmentCookSelect extends Fragment {
         editMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            // Switch to FragmentEditMenu
+                Fragment fragment = new FragmentEditMenu();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment, "EditMenu");
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
         });
