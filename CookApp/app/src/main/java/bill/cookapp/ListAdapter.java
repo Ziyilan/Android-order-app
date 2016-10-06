@@ -43,7 +43,7 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
     public View getView(final int pos, View convertView, ViewGroup parent) {
         final MenuItem item = getItem(pos);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cooks_menu_item, null);
         }
 
         ButterKnife.bind(this,convertView);

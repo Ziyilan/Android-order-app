@@ -5,11 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class FragmentCookSelect extends Fragment {
+    @BindView(R.id.edit_menu) Button editMenuButton;
+    @BindView(R.id.view_orders) Button viewOrdersButton;
 
     public FragmentCookSelect() {
     }
@@ -17,6 +24,26 @@ public class FragmentCookSelect extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cook_select, container, false);
+        View v = inflater.inflate(R.layout.fragment_cook_select, container, false);
+        ButterKnife.bind(this, v);
+
+        editMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            // Switch to FragmentEditMenu
+
+            }
+        });
+
+        viewOrdersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Switch to orders fragment
+
+            }
+        });
+
+        return v;
     }
+
 }

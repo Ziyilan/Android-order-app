@@ -6,7 +6,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/menu_item_name"
-        android:layout_marginTop="15dp"
         android:id="@+id/menuItemName"
         android:layout_weight="6"
         />
