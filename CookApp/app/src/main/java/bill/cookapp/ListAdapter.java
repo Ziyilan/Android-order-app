@@ -27,11 +27,11 @@ import butterknife.ButterKnife;
  */
 
 public class ListAdapter extends ArrayAdapter<MenuItem> {
-    ListAdapter adapter = this;;
+    ListAdapter adapter = this;
 
     private ArrayList<MenuItem> menu;
-    @BindView(R.id.delete) Button delete;
-    @BindView(R.id.itemName) TextView textView;
+    @BindView(R.id.menuItemDeleteButton) Button delete;
+    @BindView(R.id.menuItemName) TextView textView;
     @BindView(R.id.checkbox) CheckBox checkBox;
 
     public ListAdapter(Context context, ArrayList<MenuItem> menuItems) {
@@ -41,18 +41,18 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
 
     @Override
     public View getView(final int pos, View convertView, ViewGroup parent) {
-        final MenuItem task = getItem(pos);
+        final MenuItem item = getItem(pos);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, null);
         }
 
         ButterKnife.bind(this,convertView);
-        textView.setText(task.getItemName());                                     //sets text in the textView to the string at the position
-        checkBox.setChecked(task.getStatus() == 1);
+        textView.setText(item.getItemName());                                     //sets text in the textView to the string at the position
+        checkBox.setChecked(item.getStatus() == 1);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View convertView) {                             //when textView is clicked, a dialog box is generated using the function below
-                dialogMaker(menu,textView, task, adapter);
+                dialogMaker(menu,textView, item, adapter);
             }
         });
 
@@ -60,7 +60,7 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                menu.remove(task);
+                menu.remove(item);
                 notifyDataSetChanged();                                          //notifies the adapter that the array list has been modified so that it will regenerate the view
 
             }
@@ -72,7 +72,7 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task.setStatus(((CheckBox) v).isChecked() ? 1 : 0);
+                item.setStatus(((CheckBox) v).isChecked() ? 1 : 0);
             }
         });
 
@@ -96,22 +96,22 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
         input.setTitle("Input");
         input.setCancelable(false);
 
-        final EditText task = new EditText(v.getContext());
-        task.setHint("What do you need to do?");
+        final EditText item = new EditText(v.getContext());
+        item.setHint("What do you need to do?");
 
-        input.setView(task);
-        task.setText(menuItem.getItemName()); // This makes it so when you click a to-do the edittext is pre-filled.
+        input.setView(item);
+        item.setText(menuItem.getItemName()); // This makes it so when you click a to-do the edittext is pre-filled.
 
-        input.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        input.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                String userString = task.getText().toString();
+                String userString = item.getText().toString();
                 menuItem.setItemName(userString);
 //                service.updateToDo(menuItem);
                 a.notifyDataSetChanged();
             }
         });
 
-        input.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+        input.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();

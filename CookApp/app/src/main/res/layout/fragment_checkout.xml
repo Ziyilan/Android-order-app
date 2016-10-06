@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".customer_menu">
+    tools:context="bill.cookapp.checkout">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
