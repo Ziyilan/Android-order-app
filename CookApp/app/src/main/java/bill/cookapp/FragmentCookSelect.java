@@ -43,7 +43,11 @@ public class FragmentCookSelect extends Fragment {
         viewOrdersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Switch to orders fragment
+                Fragment fragment = new cook_order();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment, "CookOrder");
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
         });
