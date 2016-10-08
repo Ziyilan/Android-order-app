@@ -37,7 +37,7 @@ public class customer_menu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.fragment_main, container, false);
+        View mainView = inflater.inflate(R.layout.fragment_list_adapter, container, false);
         service = new DBService(getContext());
         menu = service.getAll();
 
