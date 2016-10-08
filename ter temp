@@ -1,0 +1,25 @@
+* [33m29a058a[m[33m ([1;32mmaster[m[33m)[m changed name customer_menu_frag to just customer_menu
+* [33m9ab71d7[m now has DB and DBService as well as an SQL schema; put in new blank fragment for checkout
+[31m|[m * [33mb601190[m[33m ([1;36mHEAD[m[33m, [1;31morigin/master[m[33m, [1;31morigin/HEAD[m[33m, [1;32mtemp[m[33m)[m finished adding fragment
+[31m|[m[31m/[m  
+* [33m31eaed9[m implemented Butterknife dependencies
+* [33me5a04a7[m commented out Erica's old menu_item
+* [33mb54ccf9[m Checkout page works with an actual list input
+* [33m2b17d7d[m updated Erica's menu_item with Bill's menu_item
+* [33mf1fd54d[m Added basic CookSelect Fragment and EditMenu Fragment and XLM files
+* [33mdbe4f14[m Made MenuItem class
+* [33m37cef67[m Delete Wireframe.pdf
+* [33m2ec9087[m Renamed to Design
+* [33m427730c[m modified for running
+*   [33mdef62a6[m Merge branch 'master' of https://github.com/Ziyilan/Android-order-app
+[33m|[m[34m\[m  
+[33m|[m * [33m33783c2[m Update README.md
+[33m|[m * [33m8e662e9[m Create README.md
+[33m|[m * [33ma426f84[m Update and rename README.md to Proposal.md
+[33m|[m * [33mabd05d7[m Update README.md
+[33m|[m * [33m93dc641[m Update README.md
+* [34m|[m [33m73fdcc1[m Merge branch 'master' of https://github.com/Ziyilan/Android-order-app
+* [34m|[m [33mcce5390[m Submit wireframe
+[34m|[m[34m/[m  
+* [33m51f3a32[m First Commit: Basic Activity
+* [33m76f832c[m first commit
