@@ -34,6 +34,7 @@ public class customer_menu extends Fragment {
     ArrayList<MenuItem> menu;          //declares an array list called menu
     DBService service;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +65,9 @@ public class customer_menu extends Fragment {
                 manager = getFragmentManager();
                 transaction = manager.beginTransaction();
 
-                transaction.replace(R.id.fragment_container, customer_menu);
+                Fragment checkoutPage = new checkout();
+
+                transaction.replace(R.id.fragment_container, checkoutPage);
                 transaction.addToBackStack(null).commit();
 
             }
