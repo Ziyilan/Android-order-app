@@ -1,7 +1,5 @@
 package bill.cookapp;
 
-
-
 import android.content.Context;
 
 import android.content.DialogInterface;
@@ -14,7 +12,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 
 import java.util.ArrayList;
 
@@ -56,7 +53,6 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
             }
         });
 
-
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,8 +61,6 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
 
             }
         });
-
-
 
 
         checkBox.setOnClickListener(new View.OnClickListener() {
