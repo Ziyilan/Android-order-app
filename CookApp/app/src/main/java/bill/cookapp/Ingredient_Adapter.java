@@ -31,8 +31,8 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        final String task = getItem(position);
-        ingredientName.setText(task);
+//        final String task = tasklist.get(position);
+//        ingredientName.setText(task);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {

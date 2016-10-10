@@ -4,7 +4,7 @@ public class CooksMenuItem {
     private long id;
     private String itemName;
 
-    public CooksMenuItem(String itemName, int status) {
+    public CooksMenuItem(String itemName) {
         this.itemName = itemName;
     }
 

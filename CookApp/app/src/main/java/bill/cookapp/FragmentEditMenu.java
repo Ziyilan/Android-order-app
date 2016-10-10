@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  */
 public class FragmentEditMenu extends Fragment {
     @BindView(R.id.cooksMenuListView) ListView cooksMenuListView;
+    @BindView(R.id.addFood) Button addFood;
 
     public FragmentEditMenu() {
     }
@@ -35,6 +36,15 @@ public class FragmentEditMenu extends Fragment {
         final CooksMenuListAdapter adapter = new CooksMenuListAdapter(this.getContext(), arrayOfItems);
         // Attach the adapter to a ListVie
         cooksMenuListView.setAdapter(adapter);
+        addFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
+                adapter.add(cooksMenuItem);
+            }
+        });
+        setHasOptionsMenu(true);
+
 
         return v;
     }
@@ -43,7 +53,17 @@ public class FragmentEditMenu extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_edit_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        android.view.MenuItem item = menu.findItem(R.id.new_food);
+        item.setOnMenuItemClickListener(new android.view.MenuItem.OnMenuItemClickListener() {
 
-
+            @Override
+            public boolean onMenuItemClick(android.view.MenuItem item) {
+                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
+                return true;
+            }
+        });
     }
+
+
+
 }

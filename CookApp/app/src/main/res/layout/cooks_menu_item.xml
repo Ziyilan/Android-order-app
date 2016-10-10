@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/menuItemEditButton"
-
         android:src="@drawable/ic_edit"
         android:layout_weight="1"
         android:layout_gravity="right" />
