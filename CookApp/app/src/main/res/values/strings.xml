@@ -8,6 +8,8 @@
     <string name="view_order_button">Orders</string>
     <string name="menu_item_name">New Food</string>
     <string name="add_food">Add Food</string>
+    <string name="what_is_your_name">What is your name?</string>
+    <string name="checkout">Checkout</string>
 
 
 </resources>
