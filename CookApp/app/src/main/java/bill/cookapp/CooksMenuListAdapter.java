@@ -1,5 +1,6 @@
 package bill.cookapp;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
@@ -22,18 +23,21 @@ import java.util.ArrayList;
 /**
  * Created by DHZ_Bill on 10/6/16.
  */
-public class CooksMenuListAdapter extends ArrayAdapter<CooksMenuItem>{
+public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
+    ItemService service;
+    public static int pos;
 
-    public CooksMenuListAdapter(Context context, ArrayList<CooksMenuItem> items) {
+    public CooksMenuListAdapter(Context context, ArrayList<MenuItem> items) {
         super(context, 0, items);
+        service = new ItemService(context);
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final CooksMenuItemHolder holder = new CooksMenuItemHolder();
+        final MenuItemHolder holder = new MenuItemHolder();
         //myDb = new DatabaseHelper(this.getContext());
         // Get the data item for this position
-        holder.cooksMenuItem = getItem(position);
+        holder.menuItem = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.cooks_menu_item, parent, false);
@@ -41,44 +45,15 @@ public class CooksMenuListAdapter extends ArrayAdapter<CooksMenuItem>{
         // I didn't figure out how to implement ButterKnife here.
         // Because all elements here is a property of the holder class
         holder.editButton = (ImageButton)convertView.findViewById(R.id.menuItemEditButton);
-        holder.editButton.setTag(holder.cooksMenuItem);
+        holder.editButton.setTag(holder.menuItem);
         holder.deleteButton = (ImageButton)convertView.findViewById(R.id.menuItemDeleteButton);
         holder.listItem = (TextView)convertView.findViewById(R.id.menuItemName);
 //         Create onClickListener for edit Button
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-//                builder.setTitle("Add new Food");
-//
-//                // Set up the input
-//                final EditText input = new EditText(v.getContext());
-//                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
-//                builder.setView(input);
-//
-//                // Set up the buttons
-//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        String m_Text = input.getText().toString();
-//                        // change the text in the TextView and update the database
-//                        holder.cooksMenuItem.setItemName(m_Text);
-//                        //System.out.println("m_Text: " + m_Text + " cooksMenuItem text: " + holder.cooksMenuItem.getItemName() );
-//                        holder.listItem.setText(m_Text);
-//                        //UpdateData(holder.cooksMenuItem);
-//                    }
-//                });
-//                // Close the dialog if pressing on Cancel button
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                });
-//                notifyDataSetChanged();
-//                builder.show();
-                System.out.println("Hi");
                 Fragment newFragment = new Ingredient();
+                pos = position;
                 if (newFragment != null)
                     switchFragment(newFragment);
             }
@@ -89,8 +64,10 @@ public class CooksMenuListAdapter extends ArrayAdapter<CooksMenuItem>{
             @Override
             public void onClick(View v) {
                 System.out.println("Hello");
-                remove(holder.cooksMenuItem); //remove the item
+                remove(holder.menuItem); //remove the item
                 //DeleteData(holder.cooksMenuItem); //delete the item from the database
+
+                service.deleteMenuItem(holder.menuItem);
                 notifyDataSetChanged();
             }
         });
@@ -100,14 +77,14 @@ public class CooksMenuListAdapter extends ArrayAdapter<CooksMenuItem>{
         return convertView;
     }
     // set the TextView
-    private void setupItem(CooksMenuItemHolder holder){
-        holder.listItem.setText(holder.cooksMenuItem.getItemName());
+    private void setupItem(MenuItemHolder holder){
+        holder.listItem.setText(holder.menuItem.getItemName());
     }
-    public static class CooksMenuItemHolder {
+    public static class MenuItemHolder {
         ImageButton editButton;
         TextView listItem;
         ImageButton deleteButton;
-        CooksMenuItem cooksMenuItem;
+        MenuItem menuItem;
 
     }
     private void switchFragment(Fragment newFragment) {
@@ -120,11 +97,11 @@ public class CooksMenuListAdapter extends ArrayAdapter<CooksMenuItem>{
     }
 
 //    // update database
-//    public void UpdateData(CooksMenuItem cooksMenuItem){
-//        myDb.updateData(cooksMenuItem);
+//    public void UpdateData(MenuItem MenuItem){
+//        myDb.updateData(MenuItem);
 //    }
 //    // delete from database
-//    public void DeleteData(CooksMenuItem cooksMenuItem){
-//        myDb.deleteData(cooksMenuItem);
+//    public void DeleteData(MenuItem MenuItem){
+//        myDb.deleteData(MenuItem);
 //    }
 }

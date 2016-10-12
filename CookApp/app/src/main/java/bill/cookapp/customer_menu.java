@@ -1,17 +1,13 @@
 package bill.cookapp;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -32,14 +28,14 @@ public class customer_menu extends Fragment {
 
 //    ListAdapter adapter;                //declares a list adapter called adapter
     ArrayList<MenuItem> menu;          //declares an array list called menu
-    DBService service;
+    ItemService service;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View mainView = inflater.inflate(R.layout.fragment_list_adapter, container, false);
-        service = new DBService(getContext());
+        service = new ItemService(getContext());
         menu = service.getAll();
 
 //        adapter = new ListAdapter(getActivity(), menu);             //applies the adapter

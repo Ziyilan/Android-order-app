@@ -22,6 +22,8 @@ public class FragmentEditMenu extends Fragment {
     @BindView(R.id.cooksMenuListView) ListView cooksMenuListView;
     @BindView(R.id.addFood) Button addFood;
 
+    ItemService itemService;
+
     public FragmentEditMenu() {
     }
 
@@ -31,16 +33,28 @@ public class FragmentEditMenu extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_edit_menu, container, false);
         ButterKnife.bind(this,v);
         // Construct the data source
-        ArrayList<CooksMenuItem> arrayOfItems = new ArrayList<>();
+        itemService = new ItemService(getContext());
+        ArrayList<MenuItem> food = itemService.getAll();
+
+//        ArrayList<MenuItem> arrayOfItems = new ArrayList<>();
         // Create the adapter to convert the array to views
-        final CooksMenuListAdapter adapter = new CooksMenuListAdapter(this.getContext(), arrayOfItems);
-        // Attach the adapter to a ListVie
+        final CooksMenuListAdapter adapter = new CooksMenuListAdapter(this.getContext(), food);
+        // Attach the adapter to a ListView
         cooksMenuListView.setAdapter(adapter);
         addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
-                adapter.add(cooksMenuItem);
+
+                ArrayList<Integer> amount = new ArrayList<Integer>();
+                amount.add(1);
+                ArrayList<String> ingredient = new ArrayList<String>();
+                ingredient.add("stuff");
+
+                MenuItem menuItem = new MenuItem("Food", amount, ingredient);
+//                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
+                adapter.add(menuItem);
+
+                itemService.addMenuItem(menuItem);
             }
         });
         setHasOptionsMenu(true);

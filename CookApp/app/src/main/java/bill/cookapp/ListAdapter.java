@@ -84,7 +84,7 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
     public static void dialogMaker(final ArrayList<MenuItem> al, View v, final MenuItem menuItem,
                                    final ArrayAdapter a) {
 
-//        final DBService service = new DBService(v.getContext());
+//        final ItemService service = new ItemService(v.getContext());
 
         AlertDialog.Builder input = new AlertDialog.Builder(v.getContext());
         input.setTitle("Input");

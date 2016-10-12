@@ -12,10 +12,10 @@ import java.util.Arrays;
 
 import layout.ItemDbSchema;
 
-public class DBService {
+public class ItemService {
     ItemDbSchema db;
 
-    public DBService(Context context) {
+    public ItemService(Context context) {
         db = new ItemDbSchema(context);
     }
 
@@ -41,6 +41,7 @@ public class DBService {
         sql.delete(ItemDbSchema.TABLE_NAME, selection, selectionArgs);
         sql.close();
     }
+
 
     public ArrayList<MenuItem> getAll() {
         ArrayList<MenuItem> taskArray = new ArrayList<>();

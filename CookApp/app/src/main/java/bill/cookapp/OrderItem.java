@@ -2,9 +2,7 @@ package bill.cookapp;
 
 import java.util.ArrayList;
 
-/**
- * Created by erica on 10/10/16.
- */
+
 public class OrderItem {
     private long id;
     private String customer_name;
