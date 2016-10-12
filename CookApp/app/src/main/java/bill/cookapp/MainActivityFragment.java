@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import layout.ItemDbSchema;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -18,6 +21,9 @@ import butterknife.ButterKnife;
 public class MainActivityFragment extends Fragment {
     @BindView(R.id.cook) Button cookButton;
     @BindView(R.id.customer) Button customerButton;
+
+    private DBService service;
+
     public MainActivityFragment() {
     }
 
@@ -56,6 +62,27 @@ public class MainActivityFragment extends Fragment {
 
             }
         });
+
+        service = new DBService(this.getContext());
+
+        String food = "Pizza";
+
+        ArrayList<String> ingredients = new ArrayList<>();
+        ingredients.add("dough");
+        ingredients.add("cheese");
+        ingredients.add("toppings");
+
+        ArrayList<Integer> amount = new ArrayList<>();
+        amount.add(1);
+        amount.add(1);
+        amount.add(10);
+
+        MenuItem item = new MenuItem(food, amount, ingredients);
+
+        service.addMenuItem(item);
+
         return v;
     }
+
+
 }

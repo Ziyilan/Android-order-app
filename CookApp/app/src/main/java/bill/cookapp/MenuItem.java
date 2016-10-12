@@ -1,13 +1,17 @@
 package bill.cookapp;
 
+import java.util.ArrayList;
+
 public class MenuItem {
     private long id;
     private String itemName;
-    private int status;
+    private ArrayList<Integer> amount;
+    private ArrayList<String> ingredients;
 
-    public MenuItem(String itemName, int status) {
+    public MenuItem(String itemName, ArrayList<Integer> amount, ArrayList<String> ingredients) {
         this.itemName = itemName;
-        this.status = status;
+        this.amount = amount;
+        this.ingredients = ingredients;
     }
 
     public long getId() {
@@ -26,11 +30,15 @@ public class MenuItem {
         this.itemName = itemName;
     }
 
-    public int getStatus() {
-        return status;
+    public ArrayList<Integer> getAmount() {
+        return amount;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setAmount(ArrayList<Integer> amount) { this.amount = amount; }
+
+    public ArrayList<String> getIngredients() { return ingredients; }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }
