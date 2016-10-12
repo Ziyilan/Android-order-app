@@ -45,13 +45,13 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
 
         ButterKnife.bind(this,convertView);
         textView.setText(item.getItemName());                                     //sets text in the textView to the string at the position
-        checkBox.setChecked(item.getStatus() == 1);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View convertView) {                             //when textView is clicked, a dialog box is generated using the function below
-                dialogMaker(menu,textView, item, adapter);
-            }
-        });
+//        checkBox.setChecked(item.getStatus() == 1);
+//        textView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View convertView) {                             //when textView is clicked, a dialog box is generated using the function below
+//                dialogMaker(menu,textView, item, adapter);
+//            }
+//        });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,12 +63,12 @@ public class ListAdapter extends ArrayAdapter<MenuItem> {
         });
 
 
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                item.setStatus(((CheckBox) v).isChecked() ? 1 : 0);
-            }
-        });
+//        checkBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                item.setStatus(((CheckBox) v).isChecked() ? 1 : 0);
+//            }
+//        });
 
         return convertView;
 

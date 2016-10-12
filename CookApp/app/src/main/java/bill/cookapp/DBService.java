@@ -5,8 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import layout.ItemDbSchema;
 
@@ -20,10 +22,13 @@ public class DBService {
     public void addMenuItem(MenuItem item) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ItemDbSchema.NAME_TITLE, item.getItemName());
-        values.put(ItemDbSchema.STATUS_TITLE, item.getStatus());
+        values.put(ItemDbSchema.FOOD_TITLE, item.getItemName());
+        values.put(ItemDbSchema.INGREDIENT_TITLE, item.getIngredients().toString());
+        values.put(ItemDbSchema.AMOUNT_TITLE, item.getAmount().toString());
         try {
-            sql.insertOrThrow(ItemDbSchema.TABLE_NAME, ItemDbSchema.NAME_TITLE, values);
+            sql.insertOrThrow(ItemDbSchema.TABLE_NAME, ItemDbSchema.FOOD_TITLE, values);
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
         } finally {
             sql.close();
         }
@@ -48,9 +53,11 @@ public class DBService {
 
         while(!c.isAfterLast()) {
             long readID = c.getLong(0);
-            String readName = c.getString(1);
-            int readStatus = c.getInt(2);
-            MenuItem taskInput = new MenuItem(readName, readStatus);
+            String readFood = c.getString(1);
+            String readIngredient = c.getString(2);
+            String readAmount = c.getString(3);
+
+            MenuItem taskInput = new MenuItem(readFood, fromStringToIntArray(readAmount), fromStringToStringArray(readIngredient));
             taskInput.setId(readID);
             taskArray.add(taskInput);
 
@@ -69,13 +76,17 @@ public class DBService {
         sb.append("update ");
         sb.append(ItemDbSchema.TABLE_NAME);
         sb.append(" set ");
-        sb.append(ItemDbSchema.NAME_TITLE);
+        sb.append(ItemDbSchema.FOOD_TITLE);
         sb.append("='");
         sb.append(task.getItemName());
         sb.append("', ");
-        sb.append(ItemDbSchema.STATUS_TITLE);
+        sb.append(ItemDbSchema.INGREDIENT_TITLE);
         sb.append("=");
-        sb.append(task.getStatus());
+        sb.append(task.getIngredients().toString());
+        sb.append(" , ");
+        sb.append(ItemDbSchema.AMOUNT_TITLE);
+        sb.append("=");
+        sb.append(task.getAmount());
         sb.append(" where ");
         sb.append(ItemDbSchema.ID_TITLE);
         sb.append("=");
@@ -91,6 +102,23 @@ public class DBService {
         return taskArray;
     }
 
+    private ArrayList<Integer> fromStringToIntArray (String string) {
+        String[] strings = string.replace("[", "").replace("]", "").split(", ");
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < result.size(); i++) {
+            result.add(Integer.parseInt(strings[i]));
+        }
+        return result;
+    }
+
+    private ArrayList<String> fromStringToStringArray (String string) {
+        String[] strings = string.replace("[", "").replace("]", "").split(", ");
+        ArrayList<String> result = new ArrayList<String>();
+        for (int i = 0; i < strings.length; i++) {
+            result.add(strings[i]);
+        }
+        return result;
+    }
 
 
 
