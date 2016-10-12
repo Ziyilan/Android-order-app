@@ -75,5 +75,9 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
         notifyDataSetChanged();
     }
 
+    public ArrayList<String> getIngredients(){
+        return ingredients;
+    }
+
 
 }

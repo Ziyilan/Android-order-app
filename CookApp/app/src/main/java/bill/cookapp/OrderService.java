@@ -21,7 +21,7 @@ public class OrderService {
         db = new OrderDbSchema(context);
     }
 
-    public void addMenuItem(OrderItem orderItem) {
+    public void addOrder(OrderItem orderItem) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(OrderDbSchema.CUSTOMER_TITLE, orderItem.getCustomer_name());

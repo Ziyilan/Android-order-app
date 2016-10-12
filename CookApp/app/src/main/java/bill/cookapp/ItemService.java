@@ -34,6 +34,7 @@ public class ItemService {
         }
     }
 
+
     public void deleteMenuItem (MenuItem task) {
         SQLiteDatabase sql = db.getWritableDatabase();
         String selection = ItemDbSchema.ID_TITLE + " =?";
@@ -69,39 +70,22 @@ public class ItemService {
         return taskArray;
     }
 
-    public ArrayList<MenuItem> updateMenuItem(MenuItem task) {
-        ArrayList<MenuItem> taskArray = new ArrayList<>();
+    public void updateIngredients(long id, ArrayList<String> ingredients){
         SQLiteDatabase sql = db.getWritableDatabase();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("update ");
-        sb.append(ItemDbSchema.TABLE_NAME);
-        sb.append(" set ");
-        sb.append(ItemDbSchema.FOOD_TITLE);
-        sb.append("='");
-        sb.append(task.getItemName());
-        sb.append("', ");
-        sb.append(ItemDbSchema.INGREDIENT_TITLE);
-        sb.append("=");
-        sb.append(task.getIngredients().toString());
-        sb.append(" , ");
-        sb.append(ItemDbSchema.AMOUNT_TITLE);
-        sb.append("=");
-        sb.append(task.getAmount());
-        sb.append(" where ");
-        sb.append(ItemDbSchema.ID_TITLE);
-        sb.append("=");
-        sb.append(task.getId());
 
-        Cursor c = sql.rawQuery(sb.toString(), null);
-
-        c.moveToFirst();
-        c.close();
-
-
-
-        return taskArray;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ItemDbSchema.INGREDIENT_TITLE, ingredients.toString());
+        sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
     }
+
+    public void updateFoodName(long id, String foodName){
+        SQLiteDatabase sql = db.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ItemDbSchema.FOOD_TITLE, foodName);
+        sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
+    }
+
 
     private ArrayList<Integer> fromStringToIntArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");

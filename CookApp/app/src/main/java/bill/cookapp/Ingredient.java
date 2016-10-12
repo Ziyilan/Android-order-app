@@ -22,10 +22,10 @@ public class Ingredient extends Fragment {
     @BindView(R.id.ingredientList) ListView ingredientList;
     @BindView(R.id.addIngredient) Button addIng;
     @BindView(R.id.done) Button done;
+    @BindView(R.id.foodName) EditText foodName;
     ItemService service;
     Ingredient_Adapter adapter;
 
-    private CooksMenuListAdapter ingredient_adapter;
 //    private ArrayList<String> ingredients;
 
     public Ingredient() {
@@ -40,7 +40,9 @@ public class Ingredient extends Fragment {
         service = new ItemService(getContext());
         int pos = CooksMenuListAdapter.pos;
         MenuItem current = service.getAll().get(pos);
-        ArrayList<String> currentIng = current.getIngredients();
+        foodName.setHint(current.getItemName());
+        final long id = current.getId();
+        final ArrayList<String> currentIng = current.getIngredients();
         adapter = new Ingredient_Adapter(getContext(),currentIng);
         ingredientList.setAdapter(adapter);
         addIng.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,19 @@ public class Ingredient extends Fragment {
                 AlertDialog userInput = input.create();
                 userInput.show();                                                       //when the button is clicked view goes back to list fragment
             }
+        });
+        done.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                service.updateIngredients(id,adapter.getIngredients());
+                if (!foodName.getText().toString().equals("")){
+                    service.updateFoodName(id,foodName.getText().toString());
+                }
+                Fragment newFragment = new FragmentEditMenu();
+                    MainActivity feeds = (MainActivity) getContext();
+                    feeds.replaceFragment(newFragment);
+                }
+
         });
 
 

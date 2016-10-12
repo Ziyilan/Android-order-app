@@ -96,12 +96,4 @@ public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
         }
     }
 
-//    // update database
-//    public void UpdateData(MenuItem MenuItem){
-//        myDb.updateData(MenuItem);
-//    }
-//    // delete from database
-//    public void DeleteData(MenuItem MenuItem){
-//        myDb.deleteData(MenuItem);
-//    }
 }
