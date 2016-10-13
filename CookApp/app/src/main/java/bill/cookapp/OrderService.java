@@ -28,6 +28,7 @@ public class OrderService {
         values.put(OrderDbSchema.FOOD_TITLE, orderItem.getFood().toString());
         values.put(OrderDbSchema.QUANTITY_TITLE, orderItem.getQuantity().toString());
         values.put(OrderDbSchema.STATUS_TITLE, orderItem.getStatus());
+        values.put(OrderDbSchema.COMMENT_TITLE, orderItem.getComment());
 
         try {
             sql.insertOrThrow(OrderDbSchema.TABLE_NAME, OrderDbSchema.CUSTOMER_TITLE, values);
@@ -38,7 +39,7 @@ public class OrderService {
         }
     }
 
-    public void deleteMenuItem (MenuItem orderItem) {
+    public void deleteOrderItem (OrderItem orderItem) {
         SQLiteDatabase sql = db.getWritableDatabase();
         String selection = OrderDbSchema.ID_TITLE + " =?";
         String[] selectionArgs = {String.valueOf(orderItem.getId())};
@@ -60,8 +61,10 @@ public class OrderService {
             String readCustName = c.getString(1);
             String readFood = c.getString(2);
             String readQuantity = c.getString(3);
+            String readComment = c.getString(4);
 
-            OrderItem orderInput = new OrderItem(readCustName,fromStringToIntArray(readQuantity), fromStringToStringArray(readFood));
+            OrderItem orderInput = new OrderItem(readCustName,fromStringToIntArray(readQuantity),
+                    fromStringToStringArray(readFood), readComment);
             orderInput.setId(readID);
             orderArray.add(orderInput);
 

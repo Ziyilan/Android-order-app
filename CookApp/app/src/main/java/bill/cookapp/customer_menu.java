@@ -27,6 +27,7 @@ public class customer_menu extends Fragment {
     @BindView(R.id.listView_container) ListView listView;
     @BindView(R.id.confirm) Button checkout;
     @BindView(R.id.customer_name) EditText customerName;
+    @BindView(R.id.comment) EditText commentSec;
 
 //    ListAdapter adapter;                //declares a list adapter called adapter
     ArrayList<MenuItem> menu;          //declares an array list called menu
@@ -62,11 +63,12 @@ public class customer_menu extends Fragment {
                 for (int i = 0; i < quantityList.size();i++){
                     if (quantityList.get(i) != 0){
                         foodOrdered.add(foodList.get(i).getItemName());
-                        quantityOrdered.add(i);
+                        quantityOrdered.add(quantityList.get(i));
                     }
                 }
 
-                OrderItem orderItem = new OrderItem(customerName.getText().toString(),quantityOrdered,foodOrdered);
+                OrderItem orderItem = new OrderItem(customerName.getText().toString(),quantityOrdered,
+                        foodOrdered, commentSec.getText().toString());
                 orderService.addOrder(orderItem);
 
 

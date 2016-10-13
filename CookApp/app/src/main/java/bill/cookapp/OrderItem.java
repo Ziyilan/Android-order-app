@@ -9,12 +9,14 @@ public class OrderItem {
     private ArrayList<Integer> quantity;
     private ArrayList<String> food;
     private int status;
+    private String comment;
 
-    public OrderItem(String customer_name, ArrayList<Integer> quantity, ArrayList<String> food) {
+    public OrderItem(String customer_name, ArrayList<Integer> quantity, ArrayList<String> food, String comment) {
         this.customer_name = customer_name;
         this.quantity = quantity;
         this.food = food;
         this.status = 0;            //0 for not complete and 1 for complete
+        this.comment = comment;
     }
 
     public long getId() {
@@ -48,4 +50,6 @@ public class OrderItem {
     public int getStatus(){ return status; }
 
     public void setStatus(int status) {this.status = status;}
+
+    public String getComment() {return comment;}
 }

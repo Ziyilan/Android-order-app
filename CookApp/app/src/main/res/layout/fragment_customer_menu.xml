@@ -8,11 +8,16 @@ android:weightSum="1">
     <ListView
         android:id="@+id/listView_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="376dp"
         android:orientation="vertical"
-        android:layout_above="@+id/checkout"
-        android:layout_weight="0.8">
+        android:layout_above="@+id/checkout">
     </ListView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/comment"
+        android:hint="Comments (ie allergies)"/>
 
     <LinearLayout
         android:layout_width="match_parent"

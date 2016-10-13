@@ -14,6 +14,7 @@ public class OrderDbSchema extends SQLiteOpenHelper {
     public static final String FOOD_TITLE = "Food";
     public static final String QUANTITY_TITLE = "Quantity";
     public static final String STATUS_TITLE = "Status";
+    public static final String COMMENT_TITLE = "Comments";
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String INTEGER_TYPE = " INTEGER";
@@ -25,7 +26,8 @@ public class OrderDbSchema extends SQLiteOpenHelper {
                     CUSTOMER_TITLE + TEXT_TYPE + COMMA_SEP +
                     FOOD_TITLE + TEXT_TYPE + COMMA_SEP +
                     QUANTITY_TITLE + INTEGER_TYPE + COMMA_SEP +
-                    STATUS_TITLE + INTEGER_TYPE + " )";
+                    STATUS_TITLE + INTEGER_TYPE + COMMA_SEP +
+                    COMMENT_TITLE + TEXT_TYPE + " )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
