@@ -30,7 +30,7 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
 
     private ArrayList<MenuItem> menu;
     @BindView(R.id.customer_menu_item_name) TextView itemName;
-    @BindView(R.id.quantity) EditText quantity;
+    @BindView(R.id.quantity) TextView quantity;
     int[] quantityList;
 
     public CustomerMenuAdapter(Context context, ArrayList<MenuItem> menuItems) {
@@ -51,22 +51,55 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
         itemName.setText(item.getItemName());
         quantity.setText("0");
 
-        quantity.addTextChangedListener(new TextWatcher() {
+        quantity.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void afterTextChanged(Editable s) {
-                Log.d("quantity", quantity.getText().toString());
-                Log.d("size", menu.size()+"");
-                quantityList[pos] = Integer.parseInt(quantity.getText().toString());
+            public void onClick(View view) {
+                AlertDialog.Builder input = new AlertDialog.Builder(getContext());
+                input.setTitle("Input");
+                input.setCancelable(false);
+
+                final EditText number = new EditText(getContext());
+                number.setHint("What do you need to do?");
+
+                input.setView(number);
+
+                input.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        int userString = Integer.parseInt(number.getText().toString());
+                        quantityList[pos] = userString;
+                        quantity.setText(number.getText().toString());
+
+                    }
+                });
+
+                input.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+                AlertDialog userInput = input.create();
+                userInput.show();                                                       //when the button is clicked view goes back to list fragment
+
             }
         });
 
+//        quantity.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                Log.d("quantity", quantity.getText().toString());
+//                Log.d("size", menu.size()+"");
+//                quantityList[pos] = Integer.parseInt(quantity.getText().toString());
+//            }
+//        });
+
         return convertView;
     }
-
 
     public ArrayList<Integer> getQuantityList(){
         ArrayList<Integer> res = new ArrayList<>();

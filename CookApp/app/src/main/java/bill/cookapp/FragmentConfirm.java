@@ -49,13 +49,13 @@ public class FragmentConfirm extends Fragment {
         StringBuilder sb = new StringBuilder();
 
         Log.d("foodlist",foodNameList.get(0));
-        for (int i = 0; i<2; i++) {
-//            if (quantityList.get(i) != 0) {
+        for (int i = 0; i<quantityList.size(); i++) {
+            if (quantityList.get(i) != 0) {
                 sb.append(foodNameList.get(i));
                 sb.append(" : ");
                 sb.append(quantityList.get(i));
                 sb.append("\n");
-//            }
+            }
         }
         Log.d("error", sb.toString());
         orderDetail.setText(sb.toString());
