@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
     @BindView(R.id.CustomerName) TextView custName;
     @BindView(R.id.orderComplete) Button done;
-    @BindView(R.id.subtext) TextView comment;
 
     OrderService orderService;
 
@@ -56,8 +55,8 @@ public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
             }
         });
 
-        custName.setText(order.getCustomer_name());
-        comment.setText(order.getComment());
+        custName.setText(order.getCustomer_name() + "\n Comments: " + order.getComment());
+
         // Return the completed view to render on screen
         return convertView;
     }

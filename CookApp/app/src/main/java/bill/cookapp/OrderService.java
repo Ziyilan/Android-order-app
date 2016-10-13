@@ -9,11 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import layout.OrderDbSchema;
-import layout.OrderDbSchema;
 
-/**
- * Created by erica on 10/11/16.
- */
+
 public class OrderService {
     OrderDbSchema db;
 
@@ -61,7 +58,7 @@ public class OrderService {
             String readCustName = c.getString(1);
             String readFood = c.getString(2);
             String readQuantity = c.getString(3);
-            String readComment = c.getString(4);
+            String readComment = c.getString(5);
 
             OrderItem orderInput = new OrderItem(readCustName,fromStringToIntArray(readQuantity),
                     fromStringToStringArray(readFood), readComment);
