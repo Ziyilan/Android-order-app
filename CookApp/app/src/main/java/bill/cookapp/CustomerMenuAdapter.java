@@ -29,8 +29,8 @@ import butterknife.ButterKnife;
 public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
 
     private ArrayList<MenuItem> menu;
-    @BindView(R.id.customer_menu_item_name) TextView itemName;
-    @BindView(R.id.quantity) TextView quantity;
+//    @BindView(R.id.customer_menu_item_name) TextView itemName;
+//    @BindView(R.id.quantity) TextView quantity;
     int[] quantityList;
 
     public CustomerMenuAdapter(Context context, ArrayList<MenuItem> menuItems) {
@@ -41,17 +41,24 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
 
     @Override
     public View getView(final int pos, View convertView, ViewGroup parent) {
-        final MenuItem item = getItem(pos);
+        final FoodHolder holder = new FoodHolder();
+        holder.menuItem = getItem(pos);
+
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.customer_menu_item, null);
         }
-        ButterKnife.bind(this,convertView);
-        quantityList = new int[menu.size()];
-        Log.d("menu", menu.size()+"");
-        itemName.setText(item.getItemName());
-        quantity.setText("0");
+//        ButterKnife.bind(this,convertView);
+        holder.quantity = (TextView)convertView.findViewById(R.id.quantity);
+        holder.menuText = (TextView)convertView.findViewById(R.id.customer_menu_item_name);
 
-        quantity.setOnClickListener(new View.OnClickListener() {
+
+
+        quantityList = new int[menu.size()];
+//        Log.d("menu", menu.size()+"");
+//        holder.menuText.setText(menu.getItemName());
+//        quantity.setText("0");
+
+        holder.quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder input = new AlertDialog.Builder(getContext());
@@ -67,7 +74,7 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
                     public void onClick(DialogInterface dialog, int id) {
                         int userString = Integer.parseInt(number.getText().toString());
                         quantityList[pos] = userString;
-                        quantity.setText(number.getText().toString());
+                        holder.quantity.setText(number.getText().toString());
 
                     }
                 });
@@ -99,6 +106,13 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
 //        });
 
         return convertView;
+    }
+
+    public static class FoodHolder{
+        TextView quantity;
+        TextView menuText;
+        MenuItem menuItem;
+
     }
 
     public ArrayList<Integer> getQuantityList(){
