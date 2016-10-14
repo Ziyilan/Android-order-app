@@ -1,25 +1,16 @@
 package bill.cookapp;
 
 import android.content.Context;
-
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * This adapter takes one layout for one element in the list view and applies it to
@@ -29,35 +20,33 @@ import butterknife.ButterKnife;
 public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
 
     private ArrayList<MenuItem> menu;
-//    @BindView(R.id.customer_menu_item_name) TextView itemName;
-//    @BindView(R.id.quantity) TextView quantity;
     int[] quantityList;
 
     public CustomerMenuAdapter(Context context, ArrayList<MenuItem> menuItems) {
         super(context, 0, menuItems);
         menu = menuItems;
-
     }
 
     @Override
     public View getView(final int pos, View convertView, ViewGroup parent) {
         final FoodHolder holder = new FoodHolder();
-        holder.menuItem = getItem(pos);
+        holder.menuItem = getItem(pos);     //gets the menu item using position
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.customer_menu_item, null);
         }
-//        ButterKnife.bind(this,convertView);
+
         holder.quantity = (TextView)convertView.findViewById(R.id.quantity);
         holder.menuText = (TextView)convertView.findViewById(R.id.customer_menu_item_name);
 
-        holder.menuText.setText(holder.menuItem.getItemName());
+        holder.menuText.setText(holder.menuItem.getItemName());         //sets the text of the text view to be the name of the menu item
 
         quantityList = new int[menu.size()];
 
         holder.quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // quantity on click will give an alert dialog that takes a user input of quantity corresponding food item
                 AlertDialog.Builder input = new AlertDialog.Builder(getContext());
                 input.setTitle("Input");
                 input.setCancelable(false);
@@ -72,7 +61,6 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
                         int userString = Integer.parseInt(number.getText().toString());
                         quantityList[pos] = userString;
                         holder.quantity.setText(number.getText().toString());
-
                     }
                 });
 
@@ -84,28 +72,26 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
                 });
 
                 AlertDialog userInput = input.create();
-                userInput.show();                                                       //when the button is clicked view goes back to list fragment
-
+                userInput.show();                                                   //when the button is clicked view goes back to list fragment
             }
         });
-
 
         return convertView;
     }
 
     public static class FoodHolder{
+        //creates a holder that holds the quantity menu text of each menu item
         TextView quantity;
         TextView menuText;
         MenuItem menuItem;
-
     }
 
     public ArrayList<Integer> getQuantityList(){
+        //converts the quantity list to an ArrayList
         ArrayList<Integer> res = new ArrayList<>();
         for (int i = 0; i<quantityList.length;i++) {
             res.add(quantityList[i]);
         }
         return res;
     }
-
 }
