@@ -5,11 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import layout.OrderDbSchema;
 
 
@@ -20,7 +17,7 @@ public class OrderService {
         db = new OrderDbSchema(context);
     }
 
-//    add new order to database
+    // add new order to database
     public void addOrder(OrderItem orderItem) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -70,7 +67,7 @@ public class OrderService {
         return orderArray;
     }
 
-//    convert the string loaded from database back to integer arraylist
+    // convert the string loaded from database back to integer arraylist
     private ArrayList<Integer> fromStringToIntArray (String string) {
         String replace = string.replace("[","");
         String replace1 = replace.replace("]","");
@@ -82,7 +79,7 @@ public class OrderService {
         return favList;
     }
 
-    //    convert the string loaded from database back to string arraylist
+    // convert the string loaded from database back to string arraylist
     private ArrayList<String> fromStringToStringArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");
         ArrayList<String> result = new ArrayList<String>();

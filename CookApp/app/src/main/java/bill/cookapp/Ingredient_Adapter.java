@@ -1,27 +1,19 @@
 package bill.cookapp;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by zlan on 10/10/16.
  */
-//list adapter class for ingredient list
+// list adapter class for ingredient list
 public class Ingredient_Adapter extends ArrayAdapter<String> {
 
     private ArrayList<String> ingredients;
@@ -49,7 +41,7 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
         return convertView;
     }
 
-//add ingredient in the adapter
+    // add ingredient in the adapter
     public void addIngredient(String ing) {
         ingredients.add(ing);
         notifyDataSetChanged();
@@ -58,6 +50,4 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
     public ArrayList<String> getIngredients(){
         return ingredients;
     }
-
-
 }

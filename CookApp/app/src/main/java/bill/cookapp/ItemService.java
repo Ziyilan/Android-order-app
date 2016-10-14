@@ -6,10 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import layout.ItemDbSchema;
 
 public class ItemService {
@@ -19,7 +16,7 @@ public class ItemService {
         db = new ItemDbSchema(context);
     }
 
-//    add new food item to database
+    // add new food item to database
     public void addMenuItem(MenuItem item) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -35,7 +32,7 @@ public class ItemService {
         }
     }
 
-// delete food item from database
+    // delete food item from database
     public void deleteMenuItem (MenuItem task) {
         SQLiteDatabase sql = db.getWritableDatabase();
         String selection = ItemDbSchema.ID_TITLE + " =?";
@@ -44,7 +41,7 @@ public class ItemService {
         sql.close();
     }
 
-//return all food items from database
+    // return all food items from database
     public ArrayList<MenuItem> getAll() {
         ArrayList<MenuItem> taskArray = new ArrayList<>();
         SQLiteDatabase sql = db.getReadableDatabase();
@@ -64,7 +61,7 @@ public class ItemService {
         return taskArray;
     }
 
-//    update ingredient for a given food item
+    // update ingredient for a given food item
     public void updateIngredients(long id, ArrayList<String> ingredients){
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -72,7 +69,7 @@ public class ItemService {
         sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
     }
 
-//    update name of food item
+    // update name of food item
     public void updateFoodName(long id, String foodName){
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -80,7 +77,7 @@ public class ItemService {
         sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
     }
 
-// convert string stored in database to integer arraylist
+    // convert string stored in database to integer arraylist
     private ArrayList<Integer> fromStringToIntArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");
         ArrayList<Integer> result = new ArrayList<Integer>();
