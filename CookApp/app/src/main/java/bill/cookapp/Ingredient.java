@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+//fragment of the ingredient page for each food item
 public class Ingredient extends Fragment {
     @BindView(R.id.ingredientList) ListView ingredientList;
     @BindView(R.id.addIngredient) Button addIng;
@@ -25,8 +25,6 @@ public class Ingredient extends Fragment {
     @BindView(R.id.foodName) EditText foodName;
     ItemService service;
     Ingredient_Adapter adapter;
-
-//    private ArrayList<String> ingredients;
 
     public Ingredient() {
         // Required empty public constructor
@@ -45,18 +43,16 @@ public class Ingredient extends Fragment {
         final ArrayList<String> currentIng = current.getIngredients();
         adapter = new Ingredient_Adapter(getContext(),currentIng);
         ingredientList.setAdapter(adapter);
+//        alert dialog for adding ingredient
         addIng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder input = new AlertDialog.Builder(getContext());
                 input.setTitle("Input");
                 input.setCancelable(false);
-
                 final EditText newIngredient = new EditText(getContext());
                 newIngredient.setHint("What ingredient do you want to add?");
-
                 input.setView(newIngredient);
-
                 input.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String userString = newIngredient.getText().toString();
@@ -73,9 +69,10 @@ public class Ingredient extends Fragment {
                 });
 
                 AlertDialog userInput = input.create();
-                userInput.show();                                                       //when the button is clicked view goes back to list fragment
+                userInput.show();  //when the button is clicked view goes back to list fragment
             }
         });
+//        save the data into database when done is clicked
         done.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -89,11 +86,6 @@ public class Ingredient extends Fragment {
                 }
 
         });
-
-
-
-//        ingredient_adapter = new Ingredient_Adapter(getActivity(),ingredients);
-//        ingredientList.setAdapter(ingredient_adapter);
         return v;
     }
 

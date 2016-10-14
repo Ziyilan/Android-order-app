@@ -19,6 +19,7 @@ public class ItemService {
         db = new ItemDbSchema(context);
     }
 
+//    add new food item to database
     public void addMenuItem(MenuItem item) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -34,7 +35,7 @@ public class ItemService {
         }
     }
 
-
+// delete food item from database
     public void deleteMenuItem (MenuItem task) {
         SQLiteDatabase sql = db.getWritableDatabase();
         String selection = ItemDbSchema.ID_TITLE + " =?";
@@ -43,42 +44,35 @@ public class ItemService {
         sql.close();
     }
 
-
+//return all food items from database
     public ArrayList<MenuItem> getAll() {
         ArrayList<MenuItem> taskArray = new ArrayList<>();
         SQLiteDatabase sql = db.getReadableDatabase();
-
-
         Cursor c = sql.rawQuery("select * from " + ItemDbSchema.TABLE_NAME, null);
-
         c.moveToFirst();
-
         while(!c.isAfterLast()) {
             long readID = c.getLong(0);
             String readFood = c.getString(1);
             String readIngredient = c.getString(2);
             String readAmount = c.getString(3);
-
             MenuItem taskInput = new MenuItem(readFood, fromStringToIntArray(readAmount), fromStringToStringArray(readIngredient));
             taskInput.setId(readID);
             taskArray.add(taskInput);
-
             c.moveToNext();
         }
-
         sql.close();
         return taskArray;
     }
 
+//    update ingredient for a given food item
     public void updateIngredients(long id, ArrayList<String> ingredients){
         SQLiteDatabase sql = db.getWritableDatabase();
-
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(ItemDbSchema.INGREDIENT_TITLE, ingredients.toString());
         sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
     }
 
+//    update name of food item
     public void updateFoodName(long id, String foodName){
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -86,7 +80,7 @@ public class ItemService {
         sql.update(ItemDbSchema.TABLE_NAME, contentValues, "ID="+id, null);
     }
 
-
+// convert string stored in database to integer arraylist
     private ArrayList<Integer> fromStringToIntArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -96,6 +90,7 @@ public class ItemService {
         return result;
     }
 
+    // convert string stored in database to string arraylist
     private ArrayList<String> fromStringToStringArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");
         ArrayList<String> result = new ArrayList<String>();

@@ -20,6 +20,7 @@ public class OrderService {
         db = new OrderDbSchema(context);
     }
 
+//    add new order to database
     public void addOrder(OrderItem orderItem) {
         SQLiteDatabase sql = db.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -38,6 +39,7 @@ public class OrderService {
         }
     }
 
+//    delete order from database
     public void deleteOrderItem (OrderItem orderItem) {
         SQLiteDatabase sql = db.getWritableDatabase();
         String selection = OrderDbSchema.ID_TITLE + " =?";
@@ -46,71 +48,29 @@ public class OrderService {
         sql.close();
     }
 
+//    get all orders from database
     public ArrayList<OrderItem> getAll() {
         ArrayList<OrderItem> orderArray = new ArrayList<>();
         SQLiteDatabase sql = db.getReadableDatabase();
-
-
         Cursor c = sql.rawQuery("select * from " + OrderDbSchema.TABLE_NAME, null);
-
         c.moveToFirst();
-
         while(!c.isAfterLast()) {
             long readID = c.getLong(0);
             String readCustName = c.getString(1);
             String readFood = c.getString(2);
             String readQuantity = c.getString(3);
             String readComment = c.getString(5);
-
             OrderItem orderInput = new OrderItem(readCustName,fromStringToIntArray(readQuantity),
                     fromStringToStringArray(readFood), readComment);
             orderInput.setId(readID);
             orderArray.add(orderInput);
-
             c.moveToNext();
         }
-
         sql.close();
         return orderArray;
     }
 
-    public ArrayList<OrderItem> updateMenuItem(OrderItem orderItem) {
-        ArrayList<OrderItem> orderArray = new ArrayList<>();
-        SQLiteDatabase sql = db.getWritableDatabase();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("update ");
-        sb.append(OrderDbSchema.TABLE_NAME);
-        sb.append(" set ");
-        sb.append(OrderDbSchema.CUSTOMER_TITLE);
-        sb.append("='");
-        sb.append(orderItem.getCustomer_name());
-        sb.append(" , ");
-        sb.append(OrderDbSchema.FOOD_TITLE);
-        sb.append("=");
-        sb.append(orderItem.getFood().toString());
-        sb.append(" , ");
-        sb.append(OrderDbSchema.QUANTITY_TITLE);
-        sb.append("=");
-        sb.append(orderItem.getQuantity().toString());
-        sb.append(" , ");
-        sb.append(OrderDbSchema.STATUS_TITLE);
-        sb.append("=");
-        sb.append(orderItem.getStatus());
-        sb.append(" where ");
-        sb.append(OrderDbSchema.ID_TITLE);
-        sb.append("=");
-        sb.append(orderItem.getId());
-
-        Cursor c = sql.rawQuery(sb.toString(), null);
-
-        c.moveToFirst();
-        c.close();
-
-
-        return orderArray;
-    }
-
+//    convert the string loaded from database back to integer arraylist
     private ArrayList<Integer> fromStringToIntArray (String string) {
         String replace = string.replace("[","");
         String replace1 = replace.replace("]","");
@@ -122,6 +82,7 @@ public class OrderService {
         return favList;
     }
 
+    //    convert the string loaded from database back to string arraylist
     private ArrayList<String> fromStringToStringArray (String string) {
         String[] strings = string.replace("[", "").replace("]", "").split(", ");
         ArrayList<String> result = new ArrayList<String>();
