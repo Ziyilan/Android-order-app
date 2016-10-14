@@ -35,7 +35,6 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ingredient_item, parent, false);
         }
-
         ImageButton deleteButton = (ImageButton)convertView.findViewById(R.id.deleteIngredient);
         TextView listItem = (TextView)convertView.findViewById(R.id.ingredientName);
         listItem.setText(ingredients.get(position));
@@ -46,30 +45,10 @@ public class Ingredient_Adapter extends ArrayAdapter<String> {
                 notifyDataSetChanged();
             }
         });
-//        convertView.setTag(holder);
-//        setupItem(holder);
-        // Return the completed view to render on screen
         return convertView;
     }
-    // set the TextView
-//    private void setupItem(MenuItemHolder holder){
-//        holder.listItem.setText(holder.menuItem.getItemName());
-//    }
-//    public static class MenuItemHolder {
-//        TextView listItem;
-//        ImageButton deleteButton;
-//
-//
-//    }
-    private void switchFragment(Fragment newFragment) {
-        if (this.getContext() == null)
-            return;
-        if (this.getContext() instanceof MainActivity) {
-            MainActivity feeds = (MainActivity) this.getContext();
-            feeds.replaceFragment(newFragment);
-        }
-    }
 
+//add ingredient in the adapter
     public void addIngredient(String ing) {
         ingredients.add(ing);
         notifyDataSetChanged();
