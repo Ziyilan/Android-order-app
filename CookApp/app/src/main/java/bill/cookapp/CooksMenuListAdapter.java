@@ -1,30 +1,20 @@
 package bill.cookapp;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 /**
  * Created by DHZ_Bill on 10/6/16.
  */
 public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
-    ItemService service;
+    ItemService service; // create new database service
     public static int pos;
 
     public CooksMenuListAdapter(Context context, ArrayList<MenuItem> items) {
@@ -48,7 +38,7 @@ public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
         holder.editButton.setTag(holder.menuItem);
         holder.deleteButton = (ImageButton)convertView.findViewById(R.id.menuItemDeleteButton);
         holder.listItem = (TextView)convertView.findViewById(R.id.menuItemName);
-//         Create onClickListener for edit Button
+        // create onClickListener for edit Button (goes to Fragment Ingredient
         holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,10 +53,8 @@ public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(holder.menuItem); //remove the item
-                //DeleteData(holder.cooksMenuItem); //delete the item from the database
-
-                service.deleteMenuItem(holder.menuItem);
+                remove(holder.menuItem); //remove the item from the adapter
+                service.deleteMenuItem(holder.menuItem); //delete the item from the database
                 notifyDataSetChanged();
             }
         });
@@ -84,8 +72,8 @@ public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
         TextView listItem;
         ImageButton deleteButton;
         MenuItem menuItem;
-
     }
+    // A method to switch between fragments
     private void switchFragment(Fragment newFragment) {
         if (this.getContext() == null)
             return;

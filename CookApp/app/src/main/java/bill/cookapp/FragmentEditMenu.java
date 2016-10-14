@@ -3,15 +3,11 @@ package bill.cookapp;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,8 +17,7 @@ import butterknife.ButterKnife;
 public class FragmentEditMenu extends Fragment {
     @BindView(R.id.cooksMenuListView) ListView cooksMenuListView;
     @BindView(R.id.addFood) Button addFood;
-
-    ItemService itemService;
+    ItemService itemService; // database service
 
     public FragmentEditMenu() {
     }
@@ -34,50 +29,26 @@ public class FragmentEditMenu extends Fragment {
         ButterKnife.bind(this,v);
         // Construct the data source
         itemService = new ItemService(getContext());
+        // get the data from database
         ArrayList<MenuItem> food = itemService.getAll();
-
-//        ArrayList<MenuItem> arrayOfItems = new ArrayList<>();
         // Create the adapter to convert the array to views
         final CooksMenuListAdapter adapter = new CooksMenuListAdapter(this.getContext(), food);
         // Attach the adapter to a ListView
         cooksMenuListView.setAdapter(adapter);
+        // set OnClickListener for addFood button. Add a food with default name "New Food"
+        // and a default ingredient "New Ingredient"
         addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ArrayList<Integer> amount = new ArrayList<Integer>();
                 amount.add(1);
                 ArrayList<String> ingredient = new ArrayList<String>();
-                ingredient.add("stuff");
-
-                MenuItem menuItem = new MenuItem("Food", amount, ingredient);
-//                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
+                ingredient.add("New Ingredient");
+                MenuItem menuItem = new MenuItem("New Food", amount, ingredient);
                 adapter.add(menuItem);
-
                 itemService.addMenuItem(menuItem);
             }
         });
-        setHasOptionsMenu(true);
-
-
         return v;
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_edit_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-        android.view.MenuItem item = menu.findItem(R.id.new_food);
-        item.setOnMenuItemClickListener(new android.view.MenuItem.OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(android.view.MenuItem item) {
-                CooksMenuItem cooksMenuItem = new CooksMenuItem("");
-                return true;
-            }
-        });
-    }
-
-
-
 }

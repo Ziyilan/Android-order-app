@@ -22,11 +22,8 @@ import butterknife.ButterKnife;
 public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
     @BindView(R.id.CustomerName) TextView custName;
     @BindView(R.id.orderComplete) Button done;
-
     OrderService orderService;
-
     private ArrayList<OrderItem> orderlist;
-
     public CookOrderAdapter(Context context, ArrayList<OrderItem> orders) {
         super(context, 0, orders);
         orderlist = orders;
@@ -36,14 +33,22 @@ public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         final OrderItem order = getItem(position);
-
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.cook_order_template, parent, false);
         }
         ButterKnife.bind(this,convertView);
+        // create a database service
         orderService = new OrderService(getContext());
 
+        // display the list of orders
+        String orderContent = "";
+        for (int i = 0; i < order.getFood().size();i++){
+            orderContent += order.getFood().get(i) + ": " + order.getQuantity().get(i) + " ";
+        }
+        custName.setText(order.getCustomer_name()+ "  "  + orderContent  + order.getComment());
+
+        // when clicking on "done", remove the order from the ListView and the database
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,16 +56,8 @@ public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
                 orderService.deleteOrderItem(item);
                 orderlist.remove(position);
                 notifyDataSetChanged();
-
             }
         });
-
-        String orderContent = "";
-        for (int i = 0; i < order.getFood().size();i++){
-            orderContent += order.getFood().get(i) + ": " + order.getQuantity().get(i) + " ";
-        }
-        custName.setText(order.getCustomer_name()+ "  "  + orderContent  + order.getComment());
-
         // Return the completed view to render on screen
         return convertView;
     }

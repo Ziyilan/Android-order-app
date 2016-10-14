@@ -27,6 +27,7 @@ public class FragmentCookSelect extends Fragment {
         View v = inflater.inflate(R.layout.fragment_cook_select, container, false);
         ButterKnife.bind(this, v);
 
+        // set OnClickListener for editMenuButton. Switch to FragmentEditMenu when clicked on.
         editMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,10 +36,10 @@ public class FragmentCookSelect extends Fragment {
                 transaction.replace(R.id.fragment_container, fragment, "EditMenu");
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
 
+        // set OnClickListener for viewOrdersButton. Switch to FragmentCookOrder when clicked on.
         viewOrdersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +48,6 @@ public class FragmentCookSelect extends Fragment {
                 transaction.replace(R.id.fragment_container, fragment, "CookOrder");
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
 
