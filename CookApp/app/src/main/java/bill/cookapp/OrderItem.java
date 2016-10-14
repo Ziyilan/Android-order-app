@@ -2,7 +2,7 @@ package bill.cookapp;
 
 import java.util.ArrayList;
 
-
+//class for each order
 public class OrderItem {
     private long id;
     private String customer_name;
@@ -16,7 +16,7 @@ public class OrderItem {
         this.quantity = quantity;
         this.food = food;
         this.status = 0;            //0 for not complete and 1 for complete
-        this.comment = comment;
+        this.comment = comment;     // additional feature, add a customized comment in each order
     }
 
     public long getId() {
@@ -31,25 +31,13 @@ public class OrderItem {
         return customer_name;
     }
 
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
-    }
-
     public ArrayList<Integer> getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(ArrayList<Integer> quantity) { this.quantity = quantity; }
-
     public ArrayList<String> getFood() { return food; }
 
-    public void setFood(ArrayList<String> food) {
-        this.food = food;
-    }
-
     public int getStatus(){ return status; }
-
-    public void setStatus(int status) {this.status = status;}
 
     public String getComment() {return comment;}
 }

@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by zlan on 10/10/16.
  */
+//list adapter class for ingredient list
 public class Ingredient_Adapter extends ArrayAdapter<String> {
 
     private ArrayList<String> ingredients;

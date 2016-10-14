@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+//fragment of the ingredient page for each food item
 public class Ingredient extends Fragment {
     @BindView(R.id.ingredientList) ListView ingredientList;
     @BindView(R.id.addIngredient) Button addIng;

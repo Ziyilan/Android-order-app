@@ -2,6 +2,7 @@ package bill.cookapp;
 
 import java.util.ArrayList;
 
+//class for each food item in the database
 public class MenuItem {
     private long id;
     private String itemName;
@@ -26,19 +27,9 @@ public class MenuItem {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public ArrayList<Integer> getAmount() {
         return amount;
     }
 
-    public void setAmount(ArrayList<Integer> amount) { this.amount = amount; }
-
     public ArrayList<String> getIngredients() { return ingredients; }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
 }
