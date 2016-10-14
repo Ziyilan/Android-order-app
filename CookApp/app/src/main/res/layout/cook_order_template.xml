@@ -8,7 +8,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="orderContent"
-            android:id="@+id/CustomerName" />
+            android:id="@+id/CustomerName"
+            android:maxLines="3"/>
 
 
 

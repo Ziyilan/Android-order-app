@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import layout.OrderDbSchema;
 
@@ -110,12 +112,14 @@ public class OrderService {
     }
 
     private ArrayList<Integer> fromStringToIntArray (String string) {
-        String[] strings = string.replace("[", "").replace("]", "").split(", ");
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for (int i = 0; i < result.size(); i++) {
-            result.add(Integer.parseInt(strings[i]));
+        String replace = string.replace("[","");
+        String replace1 = replace.replace("]","");
+        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(replace1.split(",")));
+        ArrayList<Integer> favList = new ArrayList<Integer>();
+        for(String fav:arrayList){
+            favList.add(Integer.parseInt(fav.trim()));
         }
-        return result;
+        return favList;
     }
 
     private ArrayList<String> fromStringToStringArray (String string) {

@@ -53,7 +53,7 @@ public class Ingredient extends Fragment {
                 input.setCancelable(false);
 
                 final EditText newIngredient = new EditText(getContext());
-                newIngredient.setHint("What do you need to do?");
+                newIngredient.setHint("What ingredient do you want to add?");
 
                 input.setView(newIngredient);
 

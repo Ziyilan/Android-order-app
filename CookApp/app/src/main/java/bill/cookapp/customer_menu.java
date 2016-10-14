@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,9 @@ public class customer_menu extends Fragment {
                         quantityOrdered.add(quantityList.get(i));
                     }
                 }
+
+                Log.d("order", foodOrdered.toString());
+                Log.d("order", quantityOrdered.toString());
 
                 OrderItem orderItem = new OrderItem(customerName.getText().toString(),quantityOrdered,
                         foodOrdered, commentSec.getText().toString());

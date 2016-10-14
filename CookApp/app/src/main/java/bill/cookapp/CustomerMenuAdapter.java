@@ -51,12 +51,9 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
         holder.quantity = (TextView)convertView.findViewById(R.id.quantity);
         holder.menuText = (TextView)convertView.findViewById(R.id.customer_menu_item_name);
 
-
+        holder.menuText.setText(holder.menuItem.getItemName());
 
         quantityList = new int[menu.size()];
-//        Log.d("menu", menu.size()+"");
-//        holder.menuText.setText(menu.getItemName());
-//        quantity.setText("0");
 
         holder.quantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +63,7 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
                 input.setCancelable(false);
 
                 final EditText number = new EditText(getContext());
-                number.setHint("What do you need to do?");
+                number.setHint("How many do you want to order?");
 
                 input.setView(number);
 
@@ -92,18 +89,6 @@ public class CustomerMenuAdapter extends ArrayAdapter<MenuItem> {
             }
         });
 
-//        quantity.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                Log.d("quantity", quantity.getText().toString());
-//                Log.d("size", menu.size()+"");
-//                quantityList[pos] = Integer.parseInt(quantity.getText().toString());
-//            }
-//        });
 
         return convertView;
     }

@@ -55,7 +55,11 @@ public class CookOrderAdapter extends ArrayAdapter<OrderItem> {
             }
         });
 
-        custName.setText(order.getCustomer_name() + "\n Comments: " + order.getComment());
+        String orderContent = "";
+        for (int i = 0; i < order.getFood().size();i++){
+            orderContent += order.getFood().get(i) + ": " + order.getQuantity().get(i) + " ";
+        }
+        custName.setText(order.getCustomer_name()+ "  "  + orderContent  + order.getComment());
 
         // Return the completed view to render on screen
         return convertView;

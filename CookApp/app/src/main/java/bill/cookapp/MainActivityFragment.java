@@ -61,23 +61,6 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
-        service = new ItemService(this.getContext());
-
-        String food = "Pizza";
-
-        ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add("dough");
-        ingredients.add("cheese");
-        ingredients.add("toppings");
-
-        ArrayList<Integer> amount = new ArrayList<>();
-        amount.add(1);
-        amount.add(1);
-        amount.add(10);
-
-        MenuItem item = new MenuItem(food, amount, ingredients);
-
-        service.addMenuItem(item);
 
         return v;
     }

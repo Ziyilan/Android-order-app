@@ -63,7 +63,6 @@ public class CooksMenuListAdapter extends ArrayAdapter<MenuItem>{
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Hello");
                 remove(holder.menuItem); //remove the item
                 //DeleteData(holder.cooksMenuItem); //delete the item from the database
 

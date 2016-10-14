@@ -43,13 +43,12 @@ public class FragmentConfirm extends Fragment {
         OrderItem current = orderList.get(orderList.size()-1);
         ArrayList<Integer> quantityList = current.getQuantity();
         ArrayList<String> foodNameList = current.getFood();
-        Log.d("error1", current.getCustomer_name());
         Log.d("error", foodNameList.toString());
 
         StringBuilder sb = new StringBuilder();
 
-        Log.d("foodlist",foodNameList.get(0));
-        for (int i = 0; i<quantityList.size(); i++) {
+        Log.d("foodlist",quantityList.size()+"");
+        for (int i = 0; i<foodNameList.size(); i++) {
             if (quantityList.get(i) != 0) {
                 sb.append(foodNameList.get(i));
                 sb.append(" : ");
